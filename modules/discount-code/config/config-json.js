@@ -22,7 +22,11 @@ module.exports = function configJSON(req) {
             discount: 10
           }
         ],
-        outArguments: [],
+        outArguments: [
+          {
+            discountCode: ""
+          }
+        ],
         // Fill in the host with the host that this is running on.
         // It must run under HTTPS
         url: `https://${req.headers.host}/modules/discount-code/execute`,
