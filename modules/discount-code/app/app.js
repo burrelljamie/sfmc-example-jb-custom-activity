@@ -158,9 +158,12 @@ module.exports = function discountCodeExample(app, options) {
 
         // example: https://developer.salesforce.com/docs/atlas.en-us.noversion.mc-app-development.meta/mc-app-development/example-rest-activity.htm
         const discountInArgument = getInArgument('discount') || 'nothing';
-        const errorCodeInArgument = getInArgument('errorCode') || 'No error code found';
+        const errorCodeInArgument = getInArgument('errorCode') || null;
 
+        if(errorCodeInArgument){
         console.log('Error Code', errorCodeInArgument);
+            res.stats(errorCodeInArgument).send('This request had an error')
+        }
 
         const responseObject = {
             discount: discountInArgument,
