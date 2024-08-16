@@ -94,8 +94,12 @@ function onDoneButtonClick() {
     const select = document.getElementById('discount-code');
     const option = select.options[select.selectedIndex];
 
+    const errorInput = document.getElementById('error-code');
+    const errorValue = errorInput.value;
+
     activity.arguments.execute.inArguments = [{
         discount: option.value,
+        errorCode: errorValue
     }];
 
     // you can set the name that appears below the activity with the name property
@@ -119,15 +123,17 @@ function onCancelButtonClick() {
 }
 
 function onDiscountCodeSelectChange() {
+    document.getElementById('done').removeAttribute('disabled');
+    /* JB - Removed so that Done is available when ANY attribute is changed.
+    
     // enable or disable the done button when the select option changes
     const select = document.getElementById('discount-code');
-
     if (select.selectedIndex) {
         document.getElementById('done').removeAttribute('disabled');
     } else {
         document.getElementById('done').setAttribute('disabled', '');
     }
-
+    */
     // let journey builder know the activity has changes
     connection.trigger('setActivityDirtyState', true);
 }
@@ -149,6 +155,7 @@ function setupEventHandlers() {
     document.getElementById('done').addEventListener('click', onDoneButtonClick);
     document.getElementById('cancel').addEventListener('click', onCancelButtonClick);
     document.getElementById('discount-code').addEventListener('change', onDiscountCodeSelectChange);
+    document.getElementById('error-code').addEventListener('change', onDiscountCodeSelectChange);
 }
 
 // this function is for example purposes only. it sets ups a Postmonger
@@ -198,7 +205,8 @@ function setupExampleTestHarness() {
                 execute: {
                     inArguments: [
                         {
-                            discount: 10
+                            discount: 10,
+                            errorCode: null
                         }
                     ],
                     outArguments: []

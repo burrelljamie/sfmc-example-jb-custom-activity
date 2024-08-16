@@ -19,7 +19,8 @@ module.exports = function configJSON(req) {
         // See: https://developer.salesforce.com/docs/atlas.en-us.mc-apis.meta/mc-apis/how-data-binding-works.htm
         inArguments: [
           {
-            discount: 10
+            discount: 10,
+            errorCode: ""
           }
         ],
         outArguments: [
@@ -61,7 +62,13 @@ module.exports = function configJSON(req) {
     schema: {
       arguments: {
         execute: {
-          inArguments: [],
+          inArguments: [{
+              errorCode: {
+                "dataType": "Number",
+                "isNullable": true,
+                "direction": "in"
+              }
+        }],
           outArguments: [{
             discountCode: {
               dataType: 'Text',
