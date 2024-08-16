@@ -72,6 +72,7 @@ function onInitActivity(payload) {
     // this would be set on the server side when the activity executes
     // (take a look at execute() in ./discountCode/app.js to see where that happens)
     const discountArgument = inArguments.find((arg) => arg.discount);
+    const errorCodeArgument = inArguments.find((arg) => arg.errorCode);
 
     console.log('Discount Argument', discountArgument);
 
@@ -79,6 +80,11 @@ function onInitActivity(payload) {
     if (discountArgument) {
         selectDiscountCodeOption(discountArgument.discount);
     }
+
+    if(errorCodeArgument){
+        setErrorCodeInput(errorCodeArgument.errorCode);
+    }
+
 
     // if the discountCode back argument doesn't exist the user can pick
     // a discountCode message from the drop down list. the discountCode back arg
@@ -150,6 +156,11 @@ function selectDiscountCodeOption(value) {
     } else {
         console.log('Could not select value from list', `[value='${value}]'`);
     }
+}
+
+function setErrorCodeInput(value) {
+    const input = document.getElementById('error-code');
+    input.value = value;
 }
 
 function setupEventHandlers() {
