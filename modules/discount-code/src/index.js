@@ -99,6 +99,8 @@ function onDoneButtonClick() {
 
     activity.arguments.execute.inArguments = [{
         discount: option.value,
+    },
+    {
         errorCode: errorValue
     }];
 
@@ -173,25 +175,25 @@ function setupExampleTestHarness() {
     const jb = {};
     window.jb = jb;
 
-    jbSession.on('setActivityDirtyState', function(value) {
+    jbSession.on('setActivityDirtyState', function (value) {
         console.log('[echo] setActivityDirtyState -> ', value);
     });
 
-    jbSession.on('requestInspectorClose', function() {
+    jbSession.on('requestInspectorClose', function () {
         console.log('[echo] requestInspectorClose');
     });
 
-    jbSession.on('updateActivity', function(activity) {
+    jbSession.on('updateActivity', function (activity) {
         console.log('[echo] updateActivity -> ', JSON.stringify(activity, null, 4));
     });
 
-    jbSession.on('ready', function() {
+    jbSession.on('ready', function () {
         console.log('[echo] ready');
         console.log('\tuse jb.ready() from the console to initialize your activity')
     });
 
     // fire the ready signal with an example activity
-    jb.ready = function() {
+    jb.ready = function () {
         jbSession.trigger('initActivity', {
             name: '',
             key: 'EXAMPLE-1',
