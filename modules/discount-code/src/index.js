@@ -206,7 +206,9 @@ function setupExampleTestHarness() {
                     inArguments: [
                         {
                             discount: 10,
-                            errorCode: null
+                        },
+                        {
+                            errorCode: "200"
                         }
                     ],
                     outArguments: []
