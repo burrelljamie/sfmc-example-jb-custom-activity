@@ -162,7 +162,7 @@ module.exports = function discountCodeExample(app, options) {
 
         if(errorCodeInArgument){
         console.log('Error Code', errorCodeInArgument);
-            res.stats(errorCodeInArgument).send('This request had an error')
+            return res.stats(errorCodeInArgument).send('This request had an error')
         }
 
         const responseObject = {
