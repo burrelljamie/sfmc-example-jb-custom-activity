@@ -161,8 +161,9 @@ module.exports = function discountCodeExample(app, options) {
         const errorCodeInArgument = getInArgument('errorCode') || null;
 
         if(errorCodeInArgument){
-        console.log('Error Code', errorCodeInArgument);
-            return res.status(errorCodeInArgument).send('This request had an error')
+            console.log('Error Code', errorCodeInArgument);
+            res.setHeader('content-type', 'application/json');
+            return res.status(errorCodeInArgument).send({"errorMessage":"This request had an error"})
         }
 
         const responseObject = {
